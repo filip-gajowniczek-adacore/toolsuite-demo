@@ -10,7 +10,7 @@ package body Controller is
    TESTING_LEVEL : constant Int := 10;
    OPERATIONAL_LEVEL : constant Int := 11;
 
-   Power_Level : int := get_power_level;
+   Power_Level : Int;
 
    ---------------
    -- Get_State --

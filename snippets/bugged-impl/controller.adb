@@ -13,12 +13,17 @@ package body Controller is
 
    function Get_State return State_Type is
    begin
-      case Power_Level is
-         when 0 => return  Off;
-         when 1 .. 9 => return Boot;
-         when 10 .. 19 => return Testing;
-         when others => return Operational;
-      end case;
+      if Power_Level = 0 then
+         return OFF;
+      elsif Power_Level <= 5 then
+         return BOOT;
+      elsif Power_Level <= 10 then
+         return TESTING;
+      elsif Power_Level = 11 then
+         return OPERATIONAL;
+      else
+         raise Constraint_Error;
+      end if;
    end Get_State;
 
    -------------------
@@ -28,14 +33,16 @@ package body Controller is
    task body State_Machine is
    begin
       accept Initialize;
-      Set_Power_Level (10);
+      set_power_level (5);
 
       loop
-         Power_Level := Get_Power_Level;
+         Power_Level := get_power_level;
          case Power_Level is
-            when 0 .. 9 => Set_Power_Level (10);
-            when 10 .. 19 => Set_Power_Level (20);
-            when others => Exit;
+            when 5 =>
+               set_power_level (10);
+            when 10 =>
+               set_power_level (11);
+            when others => null;
          end case;
          delay 1.0;
       end loop;

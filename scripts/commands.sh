@@ -1,1 +1,1 @@
-g++ -c -fdump-ada-spec -C hardware.h
+gcc -c -fdump-ada-spec -C hardware.h

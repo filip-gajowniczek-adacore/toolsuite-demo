@@ -1,0 +1,4 @@
++RNumeric_Literals:ALL
++RVisible_Components
++RComplex_Inlined_Subprograms:3
++RMetrics_Cyclomatic_Complexity:4
