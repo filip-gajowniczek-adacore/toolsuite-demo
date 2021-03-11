@@ -3,3 +3,9 @@
 
 # Ada Library Information
 *.ali
+
+# AdaCore toolchain related files
+/obj/*
+
+# Do not ignore unit test files
+!**/tests
